@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/19aecd2cb6.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>zoo</title>
+    <style>
+      :root {
+        --index: calc(1vh + 1vw);
+
+        --fs-big: 30px;
+        --fs-medium: 24px;
+        --fs-standart: 16px;
+
+        --main-color: #333;
+        --white-color: #fff;
+        --gold-color: #ffcc00;
+        --side-padding-xl: 0 calc(var(--index) * 5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      ul,
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: var(--fs-standart);
+        color: var(--main-color);
+        background-color: var(--main-color);
+      }
+
+      a {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        padding: var(--side-padding-xl);
+      }
+
+      .margin-auto {
+        margin-left: auto;
+      }
+
+      .bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -2;
+      }
+
+      .bg__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: -webkit-linear-gradient(
+          top,
+          #1f4a6f 0%,
+          #1f4a6f 0%,
+          rgba(12, 66, 111, 0.35) 15%,
+          rgba(255, 0, 0, 0) 30%,
+          rgba(255, 0, 0, 0) 78%,
+          rgba(12, 66, 111, 0.35) 85%,
+          #1f4a6f 93%,
+          #1f4a6f 100%
+        );
+        background: linear-gradient(
+          to bottom,
+          #1f4a6f 0%,
+          #1f4a6f 0%,
+          rgba(12, 66, 111, 0.35) 15%,
+          rgba(255, 0, 0, 0) 30%,
+          rgba(255, 0, 0, 0) 78%,
+          rgba(12, 66, 111, 0.35) 85%,
+          #1f4a6f 93%,
+          #1f4a6f 100%
+        );
+      }
+
+      .header--full-screen {
+        height: 100vh;
+      }
+
+      .logo {
+        display: flex;
+        /* height: 100%; */
+        align-items: center;
+      }
+
+      .logo__text {
+        font-size: var(--fs-medium);
+        transform: translateY(-5px);
+      }
+
+      .logo__img {
+        /* height: 100%; */
+        width: 60px;
+        height: 60px;
+      }
+
+      .ticket {
+        background-color: var(--gold-color);
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: inherit;
+        z-index: -1;
+        /* margin: 10px; */
+      }
+
+      .ticket::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        height: 50px;
+        background-repeat: repeat-x;
+        background-position: left top;
+        /* -webkit-border-image: url(src/img/edge-ticket.png);
+        -o-border-image: url(src/img/edge-ticket.png); */
+        background-image: url(src/img/edge-ticket.png);
+        z-index: 1;
+      }
+
+      .ticket__wrapper {
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+      }
+
+      .ticket__dashed {
+        width: 100%;
+        height: 100%;
+        border: 1px dashed var(--main-color);
+        border-radius: 10px;
+      }
+
+      .top-menu {
+        display: flex;
+
+        position: relative;
+        z-index: 2;
+        /* left: 0;
+        right: 0;  */
+
+        align-items: center;
+        justify-content: space-between;
+        /* width: 100%; */
+        /* gap: 20px; */
+        color: var(--white-color);
+      }
+
+      .top-menu__item {
+        /* position: relative; */
+        padding: 30px 0;
+        flex-shrink: 0;
+        /* flex: 1 1 auto; */
+      }
+
+      .top-menu__item--mini {
+        width: 100px;
+        max-width: 100px;
+      }
+
+      .top-menu__item--medium {
+        width: 150px;
+        max-width: 150px;
+      }
+
+      .top-menu__item--red {
+        background-color: red;
+      }
+
+      .aside {
+        height: 100%;
+        width: 300px;
+margin-bottom: 30px;
+        background-color: var(--gold-color);
+      }
+
+      .menu {
+        margin-bottom: 30px;
+        color: var(--white-color);
+      }
+
+      .menu__items {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .content-block {
+        display: flex;
+        padding: 10px;
+        margin: 0 10px;
+        gap: 5px;
+        flex-direction: column;
+      }
+      .content-block--dark {
+        color: var(--main-color);
+      }
+
+      .content-block--center {
+        align-items: center;
+        text-align: center;
+      }
+
+      .content-block--border-dashed {
+        border: 1px dashed var(--main-color);
+        border-radius: 10px;
+      }
+
+      .content-block__element {
+        display: flex;
+        gap: 10px;
+      }
+      .content-block__element--column {
+        flex-direction: column;
+      }
+
+      .content-block__img {
+        width: var(--fs-big);
+      }
+
+      .content-block__text {
+        display: flex;
+        font-size: var(--fs-standart);
+      }
+
+      .content-block__text--active {
+        color: var(--gold-color);
+      }
+
+      .content-block__text--big {
+        font-size: var(--fs-big);
+      }
+
+      /* .content-block__text--margin-bottom {
+        margin-bottom: 10px;
+      } */
+
+      .content-block__text--lowercase {
+        text-transform: lowercase;
+      }
+
+      .content-block__text--uppercase {
+        text-transform: uppercase;
+      }
+      .content-block__text--capitalize {
+        text-transform: capitalize;
+      }
+
+      .screen--fires-screen {
+        height: 100vh;
+        background: -webkit-linear-gradient(
+          top,
+          #1f4a6f 0%,
+          #1f4a6f 0%,
+          rgba(12, 66, 111, 0.35) 15%,
+          rgba(255, 0, 0, 0) 30%,
+          rgba(255, 0, 0, 0) 78%,
+          rgba(12, 66, 111, 0.35) 85%,
+          #1f4a6f 93%,
+          #1f4a6f 100%
+        );
+        background: linear-gradient(
+          to bottom,
+          #1f4a6f 0%,
+          #1f4a6f 0%,
+          rgba(12, 66, 111, 0.35) 15%,
+          rgba(255, 0, 0, 0) 30%,
+          rgba(255, 0, 0, 0) 78%,
+          rgba(12, 66, 111, 0.35) 85%,
+          #1f4a6f 93%,
+          #1f4a6f 100%
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header header--full-screen container">
+      <div class="top-menu">
+        <div class="top-menu__item">
+          <div class="logo">
+            <img class="logo__img" src="src/img/logo-variant.png" alt="" />
+            <span class="logo__text"
+              >Новосибирский зоопарк <br />
+              имени Р.А. Шило</span
+            >
+          </div>
+        </div>
+        <div class="top-menu__item">
+          <div class="content-block">
+            <div class="content-block__element">
+              <span class="content-block__text">Работаем ежедневно</span>
+            </div>
+            <div class="content-block__element">
+              <i
+                class="fa-regular fa-clock content-block__text content-block__text--active content-block__text--big"
+              ></i>
+              <span class="content-block__text content-block__text--big"
+                >9:00&nbsp;-&nbsp;20:00</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="top-menu__item">
+          <div class="content-block">
+            <div class="content-block__element">
+              <span class="content-block__text"
+                >Новосибирск, ул.&nbsp;Темерязева&nbsp;71/1</span
+              >
+            </div>
+            <div class="content-block__element">
+              <span class="content-block__text content-block__text--big"
+                >(383)&nbsp;388&nbsp;72&nbsp;58</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="top-menu__item top-menu__item--medium margin-auto">
+          <a class="top-menu__link" href="#">
+            <div class="content-block content-block--center">
+              <div class="content-block__element">
+                <img
+                  class="content-block__img"
+                  src="src/img/blind.svg"
+                  alt=""
+                />
+              </div>
+              <div class="content-block__element">
+                <span class="content-block__text">Версия для слабовидящих</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="top-menu__item top-menu__item--mini">
+          <div class="ticket">
+            <div class="ticket__wrapper">
+              <div class="ticket__dashed"></div>
+            </div>
+          </div>
+          <a class="top-menu__link" href="#">
+            <div
+              class="content-block content-block--dark content-block--center"
+            >
+              <div class="content-block__element">
+                <span class="content-block__text content-block__text--uppercase"
+                  >купить билет</span
+                >
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="top-menu__item top-menu__item--mini">
+          <div class="content-block">
+            <div class="content-block__element content-block__element--column">
+              <span class="content-block__text content-block__text--uppercase">
+                <a href="#">RUS</a>
+              </span>
+              <span class="content-block__text content-block__text--uppercase">
+                <a href="#">ENG</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="aside"></aside>
+      <nav class="menu">
+        <ul class="menu__items">
+          <li class="menu__item">О нас</li>
+          <li class="menu__item">История</li>
+          <li class="menu__item">Новости</li>
+          <li class="menu__item">Услуги</li>
+          <li class="menu__item">Вакансии</li>
+          <li class="menu__item">Отзывы</li>
+          <li class="menu__item">Контакты</li>
+        </ul>
+      </nav>
+      <div class="bg">
+        <img class="bg__img" src="src/img/bg.jpg" />
+      </div>
+    </header>
+    <main>
+      <!-- <div class="screen screen--fires-screen container">
+        <div class="bg">
+          <img class="bg__img" src="src/img/bg.jpg" />
+        </div>
+        <div class="screen__content"></div>
+      </div> -->
+    </main>
+  </body>
+</html>
